@@ -2,6 +2,12 @@
 
 **ProjectLens** es una herramienta de interfaz de línea de comandos (CLI) diseñada para gestionar y navegar rápidamente entre tus proyectos de desarrollo. Permite listar y abrir tus directorios de trabajo en tus editores de código favoritos o en la terminal.
 
+## 📸 Capturas de Pantalla
+
+| Vista Principal | Selección de Editor | Terminal Integrada |
+| :---: | :---: | :---: |
+| <img src="assets/project-lens-screenshot-1.png" width="300" /> | <img src="assets/project-lens-screenshot-2.png" width="300" /> | <img src="assets/project-lens-screenshot-3.png" width="300" /> |
+
 ---
 
 ## 🚀 Características Principales
