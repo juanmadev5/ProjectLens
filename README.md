@@ -4,7 +4,7 @@
 
 ## 📸 Capturas de Pantalla
 
-| Vista Principal | Selección de Editor | Terminal Integrada |
+| Vista Principal | Selección de un proyecto | Abrir en un editor de código |
 | :---: | :---: | :---: |
 | <img src="assets/project-lens-screenshot-1.png" width="300" /> | <img src="assets/project-lens-screenshot-2.png" width="300" /> | <img src="assets/project-lens-screenshot-3.png" width="300" /> |
 
