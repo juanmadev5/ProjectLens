@@ -89,7 +89,7 @@ namespace ProjectLens
                 }
                 else if (key.Key == ConsoleKey.N && key.Modifiers == ConsoleModifiers.Control)
                 {
-                    Console.Write("\nIngrese el nombre de la nueva carpeta de proyecto: ");
+                    Console.Write(AppStrings.enterProjectName);
                     string? newFolderName = Console.ReadLine();
                     if (!string.IsNullOrEmpty(newFolderName))
                     {
@@ -100,9 +100,9 @@ namespace ProjectLens
                         if (!Directory.Exists(newFolderPath))
                         {
                             Directory.CreateDirectory(newFolderPath);
-                            Console.WriteLine("Carpeta creada exitosamente.");
+                            Console.WriteLine(AppStrings.projectCreatedSuccess);
                             Thread.Sleep(1000);
-                            Console.Write("Ingrese el tipo de proyecto: ");
+                            Console.Write(AppStrings.enterProjectType);
                             string? projectType = Console.ReadLine();
                             if (!string.IsNullOrEmpty(projectType))
                             {
@@ -116,7 +116,7 @@ namespace ProjectLens
                         }
                         else
                         {
-                            Console.WriteLine("[!] Ya existe una carpeta con ese nombre.");
+                            Console.WriteLine(AppStrings.folderExists);
                             Thread.Sleep(2000);
                         }
                     }
@@ -127,13 +127,15 @@ namespace ProjectLens
         private static void OpenProject(ProjectItem project)
         {
             Screen.Clear();
-            Console.WriteLine($"--- OPCIONES PARA: {project.Name} ---");
-            Console.WriteLine($"Ruta: {project.Path}\n");
-            Console.WriteLine("1. Abrir en Editor de código");
-            Console.WriteLine("2. Asignar/Cambiar tipo de proyecto");
-            Console.WriteLine("3. Volver");
-            Console.WriteLine("4 - Abrir una terminal en este directorio");
-            Console.WriteLine("5 - [! Peligro] Eliminar proyecto");
+            Console.WriteLine(
+                AppStrings.optionsForprojectHeader.Replace("{projectName}", project.Name)
+            );
+            Console.WriteLine(AppStrings.route.Replace("{projectPath}", project.Path));
+            Console.WriteLine(AppStrings.openOnEditor);
+            Console.WriteLine(AppStrings.setProjectType);
+            Console.WriteLine(AppStrings.goBack);
+            Console.WriteLine(AppStrings.openOnTerminal);
+            Console.WriteLine(AppStrings.deleteProjectOption);
 
             var opcion = Console.ReadKey(true).Key;
 
@@ -143,12 +145,12 @@ namespace ProjectLens
                     var editors = GetAvailableEditors();
                     if (editors.Count == 0)
                     {
-                        Console.WriteLine("\n[!] No se detectaron editores conocidos en el PATH.");
+                        Console.WriteLine(AppStrings.editorsNotFound);
                         Thread.Sleep(2000);
                         break;
                     }
 
-                    Console.WriteLine("\nSeleccione un editor:");
+                    Console.WriteLine(AppStrings.selectEditor);
                     int i = 1;
                     var editorList = editors.ToList();
                     foreach (var e in editorList)
@@ -156,9 +158,7 @@ namespace ProjectLens
                         Console.WriteLine($"{i++}. {e.Key}");
                     }
 
-                    Console.Write(
-                        "Presione enter para cancelar la acción o ingrese el numero del editor que desea usar: "
-                    );
+                    Console.Write(AppStrings.actionCancel);
 
                     if (
                         int.TryParse(Console.ReadLine(), out int sel)
