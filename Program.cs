@@ -213,6 +213,7 @@ namespace ProjectLens
                     {
                         try
                         {
+                            SetAttributesNormal(new DirectoryInfo(project.Path));
                             Directory.Delete(project.Path, true);
                             Console.WriteLine(AppStrings.deleteProjectSuccess);
                             Thread.Sleep(1000);
@@ -225,6 +226,15 @@ namespace ProjectLens
                     }
                     break;
             }
+        }
+
+        private static void SetAttributesNormal(DirectoryInfo path)
+        {
+            foreach (var file in path.GetFiles("*", SearchOption.AllDirectories))
+                file.Attributes = FileAttributes.Normal;
+
+            foreach (var dir in path.GetDirectories("*", SearchOption.AllDirectories))
+                SetAttributesNormal(dir);
         }
 
         private static Dictionary<string, string> GetAvailableEditors()
