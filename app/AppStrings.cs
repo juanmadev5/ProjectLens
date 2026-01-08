@@ -21,9 +21,9 @@
         public const string optionsForprojectHeader = "--- OPCIONES PARA: {projectName} ---";
         public const string route = "Ruta: {projectPath}\n";
 
-        public const string openOnEditor = "1. Abrir en Editor de código";
-        public const string setProjectType = "2. Establecer/Modificar tipo de proyecto";
-        public const string goBack = "3/Enter sin escribir nada. Volver atrás";
+        public const string openOnEditor = "1 - Abrir en Editor de código";
+        public const string setProjectType = "2 - Establecer/Modificar tipo de proyecto";
+        public const string goBack = "3/Enter sin escribir nada - Volver atrás";
         public const string openOnTerminal = "4 - Abrir una terminal en este directorio";
         public const string deleteProjectOption = "5 - [! Peligro] Eliminar proyecto";
 
