@@ -1,4 +1,5 @@
-﻿using ProjectLens.config;
+﻿using ProjectLens.app;
+using ProjectLens.config;
 using ProjectLens.core;
 using ProjectLens.manager;
 using ProjectLens.utils;
@@ -13,28 +14,22 @@ namespace ProjectLens
             {
                 Console.WriteLine(Config.GetWorkDirectory().Value);
                 Screen.Clear();
-                Console.WriteLine("Bienvenido/a a Project Lens! :D");
+                Console.WriteLine(AppStrings.welcome);
                 while (true)
                 {
-                    Console.WriteLine(
-                        "[!] Para continuar debe establecer la dirección de su carpeta de proyectos"
-                    );
-                    Console.WriteLine(
-                        "A continuación, ingrese la dirección (ej: C:/Usuario/Proyectos)"
-                    );
+                    Console.WriteLine(AppStrings.setWorkDir);
+                    Console.WriteLine(AppStrings.enterWorkDir);
                     string? dir = Console.ReadLine();
 
                     if (dir == null)
                     {
-                        Console.WriteLine("[!] Debe ingresar al menos una letra.");
+                        Console.WriteLine(AppStrings.invalidDir);
                     }
                     else
                     {
                         while (true)
                         {
-                            Console.WriteLine(
-                                $"Desea establecer [{dir}] como su dirección de proyectos? (y/n)"
-                            );
+                            Console.WriteLine(AppStrings.setDir.Replace("{dir}", dir));
                             string? option = Console.ReadLine();
                             if (option != null || option?.ToLower() == "y")
                             {
@@ -42,7 +37,7 @@ namespace ProjectLens
                             }
                         }
                         Config.SetWorkDirectory(dir);
-                        Console.WriteLine("Directorio establecido exitosamente!");
+                        Console.WriteLine(AppStrings.dirSetSuccess);
                         break;
                     }
                 }
@@ -54,8 +49,10 @@ namespace ProjectLens
             while (true)
             {
                 Screen.Clear();
-                Console.WriteLine("----------ProjectLens v1.0----------");
-                Console.WriteLine($"Directorio: {Config.GetWorkDirectory().Value}\n");
+                Console.WriteLine(AppStrings.cliHeader);
+                Console.WriteLine(
+                    AppStrings.currentDir.Replace("{dir}", $"{Config.GetWorkDirectory().Value}")
+                );
 
                 for (int i = 0; i < projects.Count; i++)
                 {
@@ -72,9 +69,7 @@ namespace ProjectLens
                     }
                 }
 
-                Console.WriteLine(
-                    "\n[Ctrl+Q] Salir | [Ctrl+N] Nueva carpeta | [Enter] Abrir | [Flechas Arriba/Abajo] Navegar"
-                );
+                Console.WriteLine(AppStrings.actions);
 
                 var key = Console.ReadKey(true);
 
@@ -185,13 +180,13 @@ namespace ProjectLens
 
                 case ConsoleKey.D2:
                 case ConsoleKey.NumPad2:
-                    Console.Write("\nIngrese el nuevo tipo (ej: Python, React, C#): ");
+                    Console.Write(AppStrings.enterProjectType);
                     string? nuevoTipo = Console.ReadLine();
                     if (!string.IsNullOrEmpty(nuevoTipo))
                     {
                         string archivoTipo = Path.Combine(project.Path, "project-type.txt");
                         File.WriteAllText(archivoTipo, nuevoTipo.Trim());
-                        Console.WriteLine("Tipo asignado correctamente.");
+                        Console.WriteLine(AppStrings.typeSettedSuccess);
                         Thread.Sleep(1000);
                     }
                     break;
@@ -212,21 +207,19 @@ namespace ProjectLens
                     break;
                 case ConsoleKey.D5:
                 case ConsoleKey.NumPad5:
-                    Console.Write(
-                        "\n[!] Está a punto de eliminar el proyecto. Esta acción no se puede deshacer. ¿Desea continuar? (y/n): "
-                    );
+                    Console.Write(AppStrings.deleteProject);
                     string? confirm = Console.ReadLine();
                     if (confirm != null && confirm?.ToLower() == "y")
                     {
                         try
                         {
                             Directory.Delete(project.Path, true);
-                            Console.WriteLine("Proyecto eliminado exitosamente.");
+                            Console.WriteLine(AppStrings.deleteProjectSuccess);
                             Thread.Sleep(1000);
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine($"[!] Error al eliminar el proyecto: {ex.Message}");
+                            Console.WriteLine($"{AppStrings.errorOnDeleteProject} {ex.Message}");
                             Thread.Sleep(2000);
                         }
                     }
