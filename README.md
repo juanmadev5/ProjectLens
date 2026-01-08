@@ -10,7 +10,7 @@
 * **Detección de Tipos**: Identifica automáticamente el lenguaje o framework de cada carpeta mediante un archivo `project-type.txt`.
 * **Multi-Editor**: Detecta dinámicamente qué editores tienes instalados (VS Code, Visual Studio 2026, Sublime Text, Antigravity, etc.).
 * **Salto a Terminal**: Abre una nueva instancia de terminal directamente en la ruta del proyecto seleccionado.
-* **Exclusión Inteligente**: Ignora automáticamente carpetas del sistema y archivos basura (System Volume Information, $RECYCLE.BIN, etc.) mediante Regex.
+* **Exclusión Inteligente**: Ignora automáticamente carpetas del sistema (System Volume Information) mediante Regex.
 
 ---
 
