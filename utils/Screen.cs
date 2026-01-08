@@ -6,9 +6,5 @@
         {
             System.Console.Clear();
         }
-
-        public static void Message(string message) { 
-            Console.Write(message);
-        }
     }
 }

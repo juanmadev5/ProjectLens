@@ -16,12 +16,15 @@ namespace ProjectLens.config
                         "work directory is not defined"
                     );
                 }
-                return new KeyValuePair<ActionResult, string>(ActionResult.success, workDir);
+                else
+                {
+                    return new KeyValuePair<ActionResult, string>(ActionResult.success, workDir);
+                }
             }
             catch (FileNotFoundException exception)
             {
                 return new KeyValuePair<ActionResult, string>(
-                    ActionResult.success,
+                    ActionResult.undefined,
                     exception.Message
                 );
             }
